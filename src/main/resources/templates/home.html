@@ -29,6 +29,20 @@ Welcome, {{name}}!
     <button type="submit">Add Car</button>
 </form>
 
+<ol>
+    {{#cars}}
+    <li>{{make}} {{model}} {{year}} {{color}}</li>
+    <form action="/delete-car" method="post">
+        <input type="hidden" name="id" value="{{id}}"/>
+        <button type="submit">Delete</button>
+    </form>
+    <form action="/edit-car" method="get">
+        <input type="hidden" name="id" value="{{id}}"/>
+        <button type="submit">Edit</button>
+    </form>
+    {{/cars}}
+</ol>
+
 {{/user}}
 
 </body>
