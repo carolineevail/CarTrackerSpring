@@ -10,19 +10,19 @@ import javax.persistence.*;
 public class Car {
     @Id
     @GeneratedValue
-    int id;
+    public int id;
 
     @Column(nullable = false)
-    String make;
+    public String make;
 
     @Column(nullable = false)
-    String model;
+    public String model;
 
     @Column(nullable = false)
-    int year;
+    public int year;
 
     @Column(nullable = false)
-    String color;
+    public String color;
 
     @ManyToOne
     User user;

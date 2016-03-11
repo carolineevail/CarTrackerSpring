@@ -58,6 +58,24 @@ public class CarTrackerController {
         return "redirect:/";
     }
 
+    @RequestMapping(path = "/edit-car", method = RequestMethod.GET)
+    public String editCar(Model model, Integer id) {
+        Car car = cars.findOne(id);
+        model.addAttribute("car", car);
+        return "edit";
+    }
+
+    @RequestMapping(path = "/perform-edit", method = RequestMethod.POST)
+    public String performEdit(Integer id, String editedMake, String editedModel, int editedYear, String editedColor) {
+        Car car = cars.findOne(id);
+        car.make = editedMake;
+        car.model = editedModel;
+        car.year = editedYear;
+        car.color = editedColor;
+        cars.save(car);
+        return "redirect:/";
+    }
+
     @RequestMapping(path = "/delete-car", method = RequestMethod.POST)
     public String deleteCar(Integer id) {
         cars.delete(id);
