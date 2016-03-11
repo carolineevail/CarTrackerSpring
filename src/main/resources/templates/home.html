@@ -1,0 +1,35 @@
+<html>
+<body>
+
+{{^user}}
+<form action="/login" method="post">
+    <input type="text" placeholder="Username" name="userName" required/>
+    <input type="password" placeholder="Password" name="password" required/>
+    <button type="submit">Login</button>
+</form>
+<ol>
+    {{#cars}}
+    <li>{{make}} {{model}} {{year}} {{color}}</li>
+    {{/cars}}
+</ol>
+{{/user}}
+
+{{#user}}
+Welcome, {{name}}!
+<form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form>
+<br><br>
+
+<form action="/add-car" method="post">
+    <input type="text" placeholder="Make" name ="carMake"/>
+    <input type="text" placeholder="Model" name="carModel">
+    <input type="number" placeholder="Model year" name="carYear"/>
+    <input type="text" placeholder="Color" name="carColor"/>
+    <button type="submit">Add Car</button>
+</form>
+
+{{/user}}
+
+</body>
+</html>
