@@ -58,5 +58,17 @@ public class CarTrackerController {
         return "redirect:/";
     }
 
+    @RequestMapping(path = "/delete-car", method = RequestMethod.POST)
+    public String deleteCar(Integer id) {
+        cars.delete(id);
+        return "redirect:/";
+    }
+
+    @RequestMapping(path = "/logout", method = RequestMethod.POST)
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect/";
+    }
+
 
 }
