@@ -31,15 +31,16 @@ Welcome, {{name}}!
 
 <ol>
     {{#cars}}
-    <li>{{make}} {{model}} {{year}} {{color}}</li>
-    <form action="/delete-car" method="post">
+    <li>{{make}} {{model}} {{year}} {{color}}
+    <form style="display:inline-block" action="/delete-car" method="post">
         <input type="hidden" name="id" value="{{id}}"/>
         <button type="submit">Delete</button>
     </form>
-    <form action="/edit-car" method="get">
+    <form style="display:inline-block" action="/edit-car" method="get">
         <input type="hidden" name="id" value="{{id}}"/>
         <button type="submit">Edit</button>
     </form>
+    </li>
     {{/cars}}
 </ol>
 {{/user}}
