@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.theironyard.utils.PasswordStorage;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -24,6 +25,11 @@ public class CarTrackerController {
     @Autowired
     UserRepository users;
 
+    @PostConstruct
+    public void init() {
+
+    }
+
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String home(HttpSession session, Model model) {
@@ -31,6 +37,7 @@ public class CarTrackerController {
         User user = users.findFirstByName(userName);
         if (userName != null) {
             model.addAttribute("user", user);
+            model.addAttribute("cars", cars.findByUser(user));
         }
         return "home";
     }
