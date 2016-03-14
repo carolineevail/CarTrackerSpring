@@ -5,6 +5,8 @@ import com.theironyard.entities.User;
 import com.theironyard.services.CarRepository;
 import com.theironyard.services.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,13 +34,23 @@ public class CarTrackerController {
 
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String home(HttpSession session, Model model) {
+    public String home(HttpSession session, Model model, Integer page) {
+        page = (page == null) ? 0 : page;
+        PageRequest pr = new PageRequest(page, 10);
+        Page<Car> c;
+        c = cars.findAll(pr);
         String userName = (String) session.getAttribute("userName");
         User user = users.findFirstByName(userName);
         if (userName != null) {
             model.addAttribute("user", user);
             model.addAttribute("cars", cars.findByUser(user));
         }
+        model.addAttribute("cars", c);
+        model.addAttribute("nextPage", page+1);
+        model.addAttribute("showNext", c.hasNext());
+        model.addAttribute("previousPage", page-1);
+        model.addAttribute("showPrevious", c.hasPrevious());
+
         return "home";
     }
 
