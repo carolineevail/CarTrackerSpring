@@ -2,10 +2,11 @@
 <body>
 
 <form action="/perform-edit" method="post">
-    <input type="text" name="carMake" value="editedMake">
-    <input type="text" name="carModel" value="editedModel">
-    <input type="text" name="carYear" value="editedYear">
-    <input type="text" name="carColor" value="editedColor">
+    <input type="hidden" name="id" value="{{car.id}}">
+    <input type="text" name="editedMake" value="{{car.make}}">
+    <input type="text" name="editedModel" value="{{car.model}}">
+    <input type="text" name="editedYear" value="{{car.year}}">
+    <input type="text" name="editedColor" value="{{car.color}}">
     <button type="submit">Submit</button>
 </form>
 
