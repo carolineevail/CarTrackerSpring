@@ -13,6 +13,6 @@ import java.util.List;
  * Created by Caroline on 3/10/16.
  */
 public interface CarRepository extends PagingAndSortingRepository<Car, Integer> {
-    Page<Car> findByUser(User user);
+    List<Car> findByUser(User user);
     Page<Car> findAll(Pageable pageable);
 }

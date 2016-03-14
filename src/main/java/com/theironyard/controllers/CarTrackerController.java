@@ -36,7 +36,7 @@ public class CarTrackerController {
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String home(HttpSession session, Model model, Integer page) {
         page = (page == null) ? 0 : page;
-        PageRequest pr = new PageRequest(page, 10);
+        PageRequest pr = new PageRequest(page, 3);
         Page<Car> c;
         c = cars.findAll(pr);
         String userName = (String) session.getAttribute("userName");
